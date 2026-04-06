@@ -31,6 +31,7 @@ MAINNET_RPC = "https://api.mainnet-beta.solana.com"
 MAX_LAMPORTS = 100_000  # 0.0001 SOL — about one penny
 KNOWN_TYPES = {"WHICH", "METHODS", "PAY", "ORDER", "FULFILL", "INVOICE", "OFFER", "ACCEPT", "OOPS"}
 PROTOCOL_RE = re.compile(r"^([A-Z]+)(\s*\|.*)?$")
+RE_PREFIX = re.compile(r"^(Re:\s*)+", re.IGNORECASE)
 
 
 def process_email(payload: dict) -> None:
@@ -55,7 +56,7 @@ def process_email(payload: dict) -> None:
         return
 
     # Protocol mismatch — subject looks like a type keyword but isn't one we know
-    match = PROTOCOL_RE.match(subject.strip())
+    match = PROTOCOL_RE.match(RE_PREFIX.sub("", subject.strip()).strip())
     if match and match.group(1) not in KNOWN_TYPES:
         types = " | ".join(sorted(KNOWN_TYPES))
         _oops(client, inbox_id, thread_id,

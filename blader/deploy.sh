@@ -15,7 +15,8 @@ echo "Packaging $LAMBDA_FUNCTION..."
 rm -rf "$BUILD_DIR"
 mkdir -p "$BUILD_DIR/package"
 
-# No pip dependencies — blader uses only stdlib + agentmail (for send_email via urllib)
+# Copy mailroom framework
+cp -r "$SCRIPT_DIR/../mailroom" "$BUILD_DIR/package/mailroom"
 
 # Copy blader package
 cp -r "$SCRIPT_DIR" "$BUILD_DIR/package/blader"
