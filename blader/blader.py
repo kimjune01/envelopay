@@ -38,7 +38,7 @@ CATALOG = [
     {
         "name": "Damascus Chef Knife",
         "price": "$0.01",
-        "url": "https://www.youtube.com/watch?v=pRF6H4CqcuE",
+        "url": "https://youtu.be/4nGqZi5CV9s?si=6fTOULePh-GXqgIW&t=3768",
     },
     {
         "name": "CS2 Karambit",
