@@ -15,6 +15,9 @@ echo "Packaging $LAMBDA_FUNCTION..."
 rm -rf "$BUILD_DIR"
 mkdir -p "$BUILD_DIR/package"
 
+# Install anthropic SDK into package
+pip install --target "$BUILD_DIR/package" anthropic --quiet
+
 # Copy mailroom framework
 cp -r "$SCRIPT_DIR/../mailroom" "$BUILD_DIR/package/mailroom"
 
